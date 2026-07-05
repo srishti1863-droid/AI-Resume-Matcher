@@ -13,11 +13,13 @@ import resume_data
 
 app = FastAPI(title="AI Resume Matcher API")
 
+# CORS Configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://ai-resume-matcher-sigma.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -30,7 +32,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.get("/")
 def home():
-    return {"message": "Welcome to AI Resume Matcher API 🚀"}
+    return {
+        "message": "Welcome to AI Resume Matcher API 🚀"
+    }
 
 
 @app.post("/upload-resume")

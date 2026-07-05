@@ -18,6 +18,9 @@ function App() {
   const [result, setResult] = useState<MatchResult | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // ✅ Your deployed backend
+  const API_URL = "https://ai-resume-matcher-dmqb.onrender.com";
+
   const handleAnalyze = async () => {
     if (!resume) {
       alert("Please upload a resume.");
@@ -36,7 +39,7 @@ function App() {
       formData.append("file", resume);
 
       await axios.post(
-        "http://127.0.0.1:8000/upload-resume",
+        `${API_URL}/upload-resume`,
         formData,
         {
           headers: {
@@ -46,7 +49,7 @@ function App() {
       );
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/match-resume",
+        `${API_URL}/match-resume`,
         {
           description: jobDescription,
         }
